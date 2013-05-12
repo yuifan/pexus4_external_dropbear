@@ -1,5 +1,3 @@
-ifneq ($(TARGET_SIMULATOR),true)
-
 LOCAL_PATH:= $(call my-dir)
 include $(CLEAR_VARS)
 
@@ -24,13 +22,14 @@ LOCAL_SRC_FILES+=netbsd_getpass.c
 LOCAL_STATIC_LIBRARIES := libtommath libtomcrypt
 
 LOCAL_MODULE_PATH := $(TARGET_OUT_OPTIONAL_EXECUTABLES)
-LOCAL_MODULE_TAGS := eng
+LOCAL_MODULE_TAGS := debug
 LOCAL_MODULE := ssh
 LOCAL_C_INCLUDES += $(LOCAL_PATH)/libtommath 
 LOCAL_C_INCLUDES += $(LOCAL_PATH)/libtomcrypt/src/headers
 LOCAL_CFLAGS += -DDROPBEAR_CLIENT
 
-include $(BUILD_EXECUTABLE)
+# we will build openssh version instead
+# include $(BUILD_EXECUTABLE)
 
 include $(CLEAR_VARS)
 
@@ -48,9 +47,8 @@ LOCAL_C_INCLUDES += $(LOCAL_PATH)/libtommath
 LOCAL_C_INCLUDES += $(LOCAL_PATH)/libtomcrypt/src/headers
 LOCAL_CFLAGS += -DDROPBEAR_CLIENT -DPROGRESS_METER
 
-include $(BUILD_EXECUTABLE)
-
-endif  # TARGET_SIMULATOR != true
+# we will build openssh version instead
+# include $(BUILD_EXECUTABLE)
 
 
 include $(call all-makefiles-under,$(LOCAL_PATH))
